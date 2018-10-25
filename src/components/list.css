@@ -1,0 +1,51 @@
+.list {
+}
+
+.list select {
+  width: calc(100%- 30px);
+  padding: 15px;
+  background: rgba(0, 0, 0, 0.1);
+  height: 20px;
+  display: flex;
+}
+
+.list ul li {
+  border-bottom: 2px solid black;
+}
+
+.list ul li:last-of-type {
+  border-bottom: 0;
+}
+
+.list .item {
+  padding: 15px;
+}
+
+.list .item .item-header {
+  overflow-x: scroll;
+}
+
+.list .item .item-header > * {
+  display: inline;
+}
+
+.list .item .item-main {
+  margin: 15px 0 15px;
+}
+
+.list .item .item-stats > *,
+.list .item .item-stats > * > * {
+  display: inline;
+}
+
+.list .item .item-stats,
+.list .item .item-stats > * {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.list .item .item-stats > *:first-of-type {
+  flex: 1;
+  justify-content: flex-start;
+}

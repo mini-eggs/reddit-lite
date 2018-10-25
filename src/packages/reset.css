@@ -1,0 +1,22 @@
+* {
+  all: unset;
+  font-size: 18px;
+  display: block;
+  border: none;
+  background: none;
+  outline: none;
+  display: block;
+}
+
+head {
+  display: none;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+a,
+button {
+  cursor: pointer;
+}

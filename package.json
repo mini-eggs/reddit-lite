@@ -1,0 +1,39 @@
+{
+  "name": "reddit-lite",
+  "dependencies": {
+    "backpack-core": "^0.7.0",
+    "compression": "^1.7.3",
+    "dotenv": "^6.1.0",
+    "express": "^4.16.4",
+    "keybinds": "^1.1.1",
+    "navaid": "^1.0.0",
+    "request": "^2.88.0",
+    "snoowrap": "^1.15.2",
+    "wigly": "^0.1.21",
+    "wigly-class": "^0.1.21",
+    "wigly-ctx": "^0.1.21",
+    "wigly-customizer": "^0.1.21",
+    "wigly-jsx": "^0.1.21"
+  },
+  "scripts": {
+    "watch": "backpack -r dotenv/config & webpack-dev-server -r dotenv/config --mode development --open --hot --inline --host 0.0.0.0",
+    "start": "rm -rf dist && webpack -r dotenv/config --mode production && cp static/* dist/ && gzip dist/* -k -f && backpack build && NODE_ENV=production node build/main.js"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.0.0",
+    "@babel/plugin-proposal-class-properties": "^7.1.0",
+    "@babel/plugin-proposal-decorators": "^7.1.2",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.0.0",
+    "@babel/plugin-transform-react-jsx": "^7.0.0",
+    "@babel/preset-env": "^7.1.0",
+    "babel-loader": "^8.0.1",
+    "css-loader": "^1.0.0",
+    "mini-css-extract-plugin": "^0.4.4",
+    "optimize-css-assets-webpack-plugin": "^5.0.1",
+    "webpack": "^4.20.2",
+    "webpack-bundle-analyzer": "^3.0.3",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.9"
+  }
+}

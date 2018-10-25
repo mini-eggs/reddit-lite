@@ -1,0 +1,37 @@
+header {
+  height: 50px;
+}
+
+header nav {
+  background: white;
+  display: flex;
+  height: 50px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+header nav > button:first-of-type {
+  display: flex;
+  flex: 1;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0 15px;
+}
+
+header nav ul {
+  display: flex;
+  margin-right: 5px;
+}
+
+header nav ul li {
+  display: flex;
+  flex: 1;
+}
+
+header nav ul li button {
+  display: flex;
+  flex: 1;
+  padding: 0 10px;
+}

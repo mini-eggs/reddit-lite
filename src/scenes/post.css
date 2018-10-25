@@ -1,0 +1,32 @@
+.post {
+  padding: 15px;
+}
+
+.post .item-header {
+  overflow-x: scroll;
+}
+
+.post .item-header > * {
+  display: inline;
+}
+
+.post .item-main {
+  margin: 15px 0 15px;
+}
+
+.post .item-stats > *,
+.post .item-stats > * > * {
+  display: inline;
+}
+
+.post .item-stats,
+.post .item-stats > * {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.post .item-stats > *:first-of-type {
+  flex: 1;
+  justify-content: flex-start;
+}

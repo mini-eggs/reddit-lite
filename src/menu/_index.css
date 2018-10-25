@@ -1,0 +1,23 @@
+.menu-container {
+  position: fixed;
+  top: 50px;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+.menu-container:before {
+  content: " ";
+  background: rgba(0, 0, 0, 0.1);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: calc(100vh - 50px);
+}
+
+.menu-container > div {
+  z-index: 2;
+  position: relative;
+  background: white;
+}
