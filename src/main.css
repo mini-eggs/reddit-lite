@@ -41,3 +41,57 @@ input[type="submit"] {
 center {
   text-align: center;
 }
+
+/* theme */
+
+body.dark {
+  background: black;
+}
+
+body.dark .icon.ring {
+  border-color: white;
+}
+
+body.dark .list ul li {
+  border-bottom: 2px solid white;
+}
+
+body.dark header nav {
+  background: black;
+}
+
+body.dark * {
+  color: white;
+}
+
+body.dark .menu-container:before {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+body.dark .menu-container li:nth-child(odd) {
+  background: rgba(255, 255, 255, 0.025);
+}
+
+body.dark input[type="submit"] {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+body.dark input[type="checkbox"].ios8-switch + label:hover:after {
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+}
+
+body.dark .list select {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+body.dark .list select option {
+  background: black;
+}
+
+body.dark .btn-container {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+body.dark .menu-container > div {
+  background: black;
+}

@@ -5,7 +5,6 @@ import xhr from "./xhr";
 
 class Reddit {
   constructor({ client_id, redirect_uri }) {
-    console.log({client_id, redirect_uri})
     this.client_id = client_id;
     this.redirect_uri = redirect_uri;
     this.randomVerificationString = id();
@@ -44,6 +43,6 @@ class Reddit {
 }
 
 export default new Reddit({
-  client_id: process.env.REDDIT_CLIENT_ID ,
-  redirect_uri: process.env.REDDIT_REDIRECT_URI 
+  client_id: process.env.REDDIT_CLIENT_ID,
+  redirect_uri: process.env.REDDIT_REDIRECT_URI
 });

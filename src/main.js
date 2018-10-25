@@ -6,8 +6,11 @@ import App from "./app";
 // import nextTick from "./packages/nextTick";
 // import anim from "./packages/anim";
 // import bus from "./packages/bus";
+import { apply } from "./containers/with-options";
 import "./packages/reset.css";
 import "./main.css";
+
+apply(); // should be refactored into a HOC or something
 
 // var ctx = context({ nextTick, anim, bus });
 var custom = customizer(sig => classer(sig), { applyToChildren: true });

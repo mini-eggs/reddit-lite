@@ -1,34 +1,37 @@
 import { h } from "wigly-jsx";
-import WithUser from "../containers/with-user";
-import withRouter from "../containers/with-router";
 import "./_index.css";
+import Switch from "../components/switch";
+import withOptions from "../containers/with-options";
 
-@WithUser()
-@withRouter()
+@withOptions()
 export default class Burger {
-  onLoginClick() {
-    this.props.close();
-    this.props.router.route("/login");
-  }
-
-  onLogoutClick() {
-    alert("NOT YET IMPLEMENTED");
+  handleThemeChange(event) {
+    var dark = event.target.checked;
+    var theme = this.props.options.values.theme;
+    this.props.options.set("theme", { ...theme, dark });
   }
 
   render() {
     return (
       <div onclick={this.props.close} class="menu-container">
-        <div>
+        <div onclick={e => e.stopPropagation()}>
           <ul>
-            {this.props.user.loggedin ? (
-              <li onclick={e => e.stopPropagation()}>
-                <button onclick={this.onLogoutClick}>Logout</button>
-              </li>
-            ) : (
-              <li onclick={e => e.stopPropagation()}>
-                <button onclick={this.onLoginClick}>Sign up / login</button>
-              </li>
-            )}
+            <li>
+              <div>
+                <Switch
+                  checked={this.props.options.values.theme.dark}
+                  oninput={this.handleThemeChange}
+                  name="theme"
+                  label="Night theme"
+                />
+              </div>
+            </li>
+            <li>More options coming soon</li>
+            <li>More options coming soon</li>
+            <li>More options coming soon</li>
+            <li>More options coming soon</li>
+            <li>More options coming soon</li>
+            <li>More options coming soon</li>
           </ul>
         </div>
       </div>
