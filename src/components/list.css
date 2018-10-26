@@ -2,8 +2,8 @@
 }
 
 .list select {
-  width: calc(100%- 30px);
-  padding: 15px;
+  width: calc(100%- 20px);
+  padding: 10px;
   background: rgba(0, 0, 0, 0.1);
   height: 20px;
   display: flex;
@@ -18,7 +18,7 @@
 }
 
 .list .item {
-  padding: 15px;
+  padding: 10px;
 }
 
 .list .item .item-header {
@@ -30,7 +30,7 @@
 }
 
 .list .item .item-main {
-  margin: 15px 0 15px;
+  margin: 10px 0 10px;
 }
 
 .list .item .item-stats > *,

@@ -20,15 +20,40 @@
   z-index: 2;
   position: relative;
   background: white;
+  max-height: 60vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
-.menu-container li {
-  padding: 0 15px;
+.menu-container > div > ul > li {
+  padding: 0 10px;
   min-height: 40px;
   display: flex;
   align-items: center;
 }
 
-.menu-container li:nth-child(odd) {
+.menu-container > div > ul > li:nth-child(odd) {
   background: rgba(0, 0, 0, 0.025);
+}
+
+.menu-container form {
+  min-height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.menu-container form div {
+  display: flex;
+}
+
+.menu-container form input {
+  padding: 10px 15px;
+}
+
+.menu-container form input[type="submit"] {
+  background: #0000ee;
+  color: white;
+  font-weight: bold;
 }

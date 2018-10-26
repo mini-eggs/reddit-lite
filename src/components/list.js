@@ -1,6 +1,7 @@
 import { h } from "wigly-jsx";
 import reddit from "../packages/reddit";
 import Loader from "./loader";
+import Media from "./media";
 import "./list.css";
 import withRouter from "../containers/with-router";
 import Button from "../components/button";
@@ -19,17 +20,18 @@ class ListItem {
           </div>
           <div class="item-main">
             <div>{item.title}</div>
+            <Media href={item.permalink} image={true} {...item} />
           </div>
           <div class="item-stats">
             <div>
               <div class="icon">comment</div>
-              <div style={{ marginLeft: "15px" }}>{item.num_comments}</div>
+              <div style={{ marginLeft: "10px" }}>{item.num_comments}</div>
             </div>
             <div>
               <button onclick={() => alert("NOT YET IMPLEMENTED")} class="icon">
                 thumb_up
               </button>
-              <div style={{ margin: "0 15px" }}>{item.score}</div>
+              <div style={{ margin: "0 10px" }}>{item.score}</div>
               <button onclick={() => alert("NOT YET IMPLEMENTED")} class="icon">
                 thumb_down
               </button>
@@ -37,6 +39,41 @@ class ListItem {
           </div>
         </div>
       </a>
+    );
+  }
+}
+
+export class ListWithData {
+  getNextURL() {
+    var base = `/sort/${this.props.sortSelected}/after/${this.props.items[this.props.items.length - 1].name}`;
+    return this.props.subreddit ? `/r/${this.props.subreddit}${base}` : base;
+  }
+
+  render() {
+    return (
+      <div class="list">
+        {this.props.children}
+        {this.props.loading ? (
+          <Loader />
+        ) : (
+          <div>
+            <ul>
+              {this.props.items.map(item => (
+                <li>
+                  <ListItem item={item} />
+                </li>
+              ))}
+            </ul>
+            {this.props.next && (
+              <a href={this.getNextURL()}>
+                <center>
+                  <Button>NEXT</Button>
+                </center>
+              </a>
+            )}
+          </div>
+        )}
+      </div>
     );
   }
 }
@@ -69,14 +106,9 @@ class List {
     this.props.router.route(url);
   }
 
-  getNextURL() {
-    var base = `/sort/${this.state.sortSelected}/after/${this.state.items[this.state.items.length - 1].name}`;
-    return this.props.subreddit ? `/r/${this.props.subreddit}${base}` : base;
-  }
-
   render() {
     return (
-      <div class="list">
+      <ListWithData {...this.props} {...this.state} next={true}>
         <div>
           <select oninput={this.handleSortChange} value={this.state.sortSelected}>
             {this.state.sort.map(sort => (
@@ -84,23 +116,7 @@ class List {
             ))}
           </select>
         </div>
-        {this.state.loading ? (
-          <Loader />
-        ) : (
-          <div>
-            <ul>
-              {this.state.items.map(item => (
-                <li>
-                  <ListItem item={item} />
-                </li>
-              ))}
-            </ul>
-            <a href={this.getNextURL()}>
-              <Button>NEXT</Button>
-            </a>
-          </div>
-        )}
-      </div>
+      </ListWithData>
     );
   }
 }

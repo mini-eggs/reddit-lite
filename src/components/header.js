@@ -25,11 +25,13 @@ class Header {
 
       var file = await link.component();
       this.setState({ activeMenu: link.title, menu: file.default });
+      document.body.style.overflow = "hidden";
     };
   }
 
   onClose() {
     this.setState({ activeMenu: undefined, menu: undefined });
+    document.body.style.overflow = "initial";
   }
 
   onLogoClick() {

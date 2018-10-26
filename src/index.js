@@ -1,4 +1,5 @@
 import express from "express";
+import "express-async-errors";
 import path from "path";
 import compression from "compression";
 import request from "request";
@@ -12,8 +13,8 @@ var errorHandler = (error, req, res, next) => {
 
 var creds = {
   client_id: process.env.REDDIT_CLIENT_ID,
-  client_secret: process.env.REDDIT_CLIENT_SECRET ,
-  redirect_uri: process.env.REDDIT_REDIRECT_URI 
+  client_secret: process.env.REDDIT_CLIENT_SECRET,
+  redirect_uri: process.env.REDDIT_REDIRECT_URI
 };
 
 var getRedditToken = (req, res) => {
@@ -52,26 +53,33 @@ var redditAPI = new express.Router()
   .use(withSnoo)
   .get(["/hot", "/hot/:subreddit"], async (req, res) => {
     req.params.subreddit && (req.snoo = req.snoo.getSubreddit(req.params.subreddit));
-    res.json(await req.snoo.getHot());
+    res.json(await req.snoo.getHot(req.query));
   })
   .get(["/new", "/new/:subreddit"], async (req, res) => {
     req.params.subreddit && (req.snoo = req.snoo.getSubreddit(req.params.subreddit));
-    res.json(await req.snoo.getNew());
+    res.json(await req.snoo.getNew(req.query));
   })
   .get(["/rising", "/rising/:subreddit"], async (req, res) => {
     req.params.subreddit && (req.snoo = req.snoo.getSubreddit(req.params.subreddit));
-    res.json(await req.snoo.getRising());
+    res.json(await req.snoo.getRising(req.query));
   })
   .get(["/controversial", "/controversial/:subreddit"], async (req, res) => {
     req.params.subreddit && (req.snoo = req.snoo.getSubreddit(req.params.subreddit));
-    res.json(await req.snoo.getControversial());
+    res.json(await req.snoo.getControversial(req.query));
   })
   .get(["/top", "/top/:subreddit"], async (req, res) => {
     req.params.subreddit && (req.snoo = req.snoo.getSubreddit(req.params.subreddit));
-    res.json(await req.snoo.getTop());
+    res.json(await req.snoo.getTop(req.query));
   })
   .get("/comments/:subreddit/:post", async (req, res) => {
     res.json(await req.snoo.getSubmission(req.params.post).expandReplies({ limit: 0, depth: 0 }));
+  })
+  .get("/search", async (req, res) => {
+    res.json(
+      await req.snoo
+        .search({ query: req.query.search, time: "month", sort: "new" })
+        .fetchAll({ amount: 10, limit: 10, skipReplies: true })
+    );
   });
 
 new express()

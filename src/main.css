@@ -2,6 +2,8 @@
 
 * {
   font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  max-width: 100%;
 }
 
 @font-face {
@@ -15,7 +17,7 @@
   font-family: "Material Icons";
   font-weight: normal;
   font-style: normal;
-  font-size: 24px;
+  font-size: 20px;
   line-height: 1;
   letter-spacing: normal;
   text-transform: none;
@@ -42,10 +44,41 @@ center {
   text-align: center;
 }
 
+input {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.overflow,
+.overflow * {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+em,
+i,
+bold,
+strong {
+  display: inline;
+}
+
+em,
+bold,
+strong {
+  font-weight: bold;
+}
+
+i {
+  font-style: italic;
+}
+
 /* theme */
 
 body.dark {
   background: black;
+}
+
+body.dark input {
+  background: rgba(255, 255, 255, 0.1);
 }
 
 body.dark .icon.ring {
@@ -62,6 +95,7 @@ body.dark header nav {
 
 body.dark * {
   color: white;
+  -webkit-text-fill-color: white;
 }
 
 body.dark .menu-container:before {
@@ -94,4 +128,12 @@ body.dark .btn-container {
 
 body.dark .menu-container > div {
   background: black;
+}
+
+body.dark input[type="checkbox"].ios8-switch + label:before {
+  border-color: #151515;
+}
+
+body.dark .reply-container {
+  border-color: rgba(255, 255, 255, 0.5);
 }

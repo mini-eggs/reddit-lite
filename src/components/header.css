@@ -10,6 +10,7 @@ header nav {
   top: 0;
   left: 0;
   width: 100%;
+  z-index: 5;
 }
 
 header nav > button:first-of-type {
@@ -17,7 +18,7 @@ header nav > button:first-of-type {
   flex: 1;
   justify-content: flex-start;
   align-items: center;
-  padding: 0 15px;
+  padding: 0 10px;
 }
 
 header nav ul {

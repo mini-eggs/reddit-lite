@@ -1,0 +1,7 @@
+.comment .reply-container {
+  border-left: 2px solid rgba(0, 0, 0, 0.5);
+}
+
+.comment .md p {
+  margin-bottom: 5px;
+}

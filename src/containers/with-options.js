@@ -6,11 +6,12 @@ var def = { theme: { dark: false } };
 var current = { ...def, ...past };
 
 export var apply = (options = current) => {
+  current = options;
   var bodyClass = options.theme.dark ? "dark" : "light";
   document.body.className = bodyClass;
 };
 
-export default () => Component => {
+export default (f = opts => opts) => Component => {
   class WithOptions {
     constructor() {
       this.state = { options: { ...current } };
@@ -28,7 +29,7 @@ export default () => Component => {
     }
 
     render() {
-      return <Component {...this.props} options={{ get: this.get, set: this.set, values: this.state.options }} />;
+      return <Component {...this.props} options={{ get: this.get, set: this.set }} {...f(this.state.options)} />;
     }
   }
 

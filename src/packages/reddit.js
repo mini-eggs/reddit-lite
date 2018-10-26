@@ -40,6 +40,11 @@ class Reddit {
     var options = { ...this.user };
     return xhr({ url: `/reddit/comments/${subreddit}/${post}${query(options)}`, method: "get" });
   }
+
+  search(search) {
+    var options = { ...this.user, search };
+    return xhr({ url: `/reddit/search${query(options)}`, method: "get" });
+  }
 }
 
 export default new Reddit({
