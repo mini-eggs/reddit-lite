@@ -1,7 +1,8 @@
-import { h } from "wigly-jsx";
+import wigly from "wigly";
+import { Component } from "wigly-class";
 import "./image.css";
 
-export default class Image {
+export default class Image  extends Component {
   mounted(el) {
     this.anim({ el: el.firstChild, immediate: true, opacity: 0 });
   }
@@ -14,11 +15,7 @@ export default class Image {
   render() {
     return (
       <div class="image-container">
-        <img
-          style={this.props.style || {}}
-          src={this.props.src}
-          onload={this.onLoad}
-        />
+        <img style={this.props.style || {}} src={this.props.src} onload={this.onLoad} />
       </div>
     );
   }

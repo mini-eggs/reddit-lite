@@ -1,5 +1,5 @@
 var path = require("path");
-var webpack = require("webpack")
+var webpack = require("webpack");
 var MiniCssExtractPlugin = require("mini-css-extract-plugin");
 var OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 // var BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
@@ -13,11 +13,10 @@ module.exports = {
   },
   resolve: {
     alias: {
-      wigly: path.resolve(__dirname, "node_modules/wigly/dist/es6.js"),
-      "wigly-class": path.resolve(__dirname, "node_modules/wigly-class/dist/es6.js"),
-      "wigly-ctx": path.resolve(__dirname, "node_modules/wigly-ctx/dist/es6.js"),
-      "wigly-customizer": path.resolve(__dirname, "node_modules/wigly-customizer/dist/es6.js"),
-      "wigly-jsx": path.resolve(__dirname, "node_modules/wigly-jsx/dist/es6.js")
+      // wigly: path.resolve(__dirname, "node_modules/wigly/dist/es6.js"),
+      // "wigly-class": path.resolve(__dirname, "node_modules/wigly-class/dist/es6.js"),
+      // "wigly-ctx": path.resolve(__dirname, "node_modules/wigly-ctx/dist/es6.js"),
+      // "wigly-use": path.resolve(__dirname, "node_modules/wigly-customizer/dist/es6.js")
     }
   },
   module: {
@@ -52,7 +51,7 @@ module.exports = {
               "@babel/plugin-proposal-object-rest-spread",
               ["@babel/plugin-proposal-decorators", { legacy: true }],
               ["@babel/plugin-proposal-class-properties", { loose: true }],
-              ["@babel/plugin-transform-react-jsx", { pragma: "h" }]
+              ["@babel/plugin-transform-react-jsx", { pragma: "wigly.h" }]
             ]
           }
         }
@@ -72,8 +71,8 @@ module.exports = {
     new OptimizeCSSAssetsPlugin(),
     new webpack.DefinePlugin({
       "process.env": {
-        REDDIT_CLIENT_ID: `'${process.env.REDDIT_CLIENT_ID}'` ,
-        REDDIT_REDIRECT_URI: `'${process.env.REDDIT_REDIRECT_URI}'` 
+        REDDIT_CLIENT_ID: `'${process.env.REDDIT_CLIENT_ID}'`,
+        REDDIT_REDIRECT_URI: `'${process.env.REDDIT_REDIRECT_URI}'`
       }
     })
     // new BundleAnalyzerPlugin()

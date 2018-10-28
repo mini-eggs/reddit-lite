@@ -1,17 +1,16 @@
 import wigly from "wigly";
-import classer from "wigly-class";
-// import context from "wigly-ctx";
-import customizer from "wigly-customizer";
+import { classer } from "wigly-class";
+import { use } from "wigly-use";
+import { apply } from "./containers/use-options";
 import App from "./app";
-// import nextTick from "./packages/nextTick";
-// import anim from "./packages/anim";
-// import bus from "./packages/bus";
-import { apply } from "./containers/with-options";
 import "./packages/reset.css";
 import "./main.css";
 
-apply(); // should be refactored into a HOC or something
+apply();
 
-// var ctx = context({ nextTick, anim, bus });
-var custom = customizer(sig => classer(sig), { applyToChildren: true });
-wigly.render(custom(App), document.body);
+var el = wigly.render(App, document.body, classer, use);
+
+if (process.env.NODE_ENV !== "production" && module.hot) {
+  module.hot.accept();
+  module.hot.dispose(() => el.parentElement.removeChild(el));
+}

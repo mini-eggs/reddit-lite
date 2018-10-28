@@ -1,13 +1,15 @@
-import { h } from "wigly-jsx";
+import wigly from "wigly";
+import { Component } from "wigly-class";
 import WithUser from "./with-user";
 import Login from "../scenes/login";
 
-export default options => Component => {
+export default options => Child => {
   @WithUser()
-  class WithValidUser {
+  class WithValidUser extends Component {
     render() {
+      delete this.props.tag; // fix in wigly later
       if (this.props.user.loggedin) {
-        return <Component {...this.props} />;
+        return <Child {...this.props} />;
       }
 
       return <Login />;

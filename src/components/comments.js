@@ -1,9 +1,11 @@
 import "./comments.css";
-import { h } from "wigly-jsx";
+import { Component } from "wigly-class";
+import wigly from "wigly";
 import Raw from "./raw";
 
-class Comment {
+class Comment extends Component {
   constructor() {
+    super();
     this.state = {
       active: true,
       arrowStyle: { transform: "rotate(90deg)" }
@@ -47,7 +49,7 @@ class Comment {
   }
 }
 
-export default class Comments {
+export default class Comments extends Component {
   render() {
     return (
       <div>

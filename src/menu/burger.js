@@ -1,39 +1,33 @@
-import { h } from "wigly-jsx";
-import "./_index.css";
+import wigly from "wigly";
 import Switch from "../components/switch";
-import withOptions from "../containers/with-options";
+import useOptions from "../containers/use-options";
+import "./_index.css";
 
-@withOptions(opts => ({ theme: opts.theme.dark }))
-export default class Burger {
-  handleThemeChange(event) {
-    this.props.options.set("theme", { dark: event.target.checked });
-  }
+export default function Burger({ close }) {
+  var [options, setOptions] = useOptions(opts => ({ theme: opts.theme.dark }));
 
-  render() {
-    return (
-      <div onclick={this.props.close} class="menu-container">
-        <div onclick={e => e.stopPropagation()}>
-          <ul>
-            <li>
-              <div>
-                <Switch
-                  checked={this.props.theme}
-                  onchange={this.handleThemeChange}
-                  oninput={this.handleThemeChange}
-                  name="theme"
-                  label="Night theme"
-                />
-              </div>
-            </li>
-            <li>More options coming soon</li>
-            <li>More options coming soon</li>
-            <li>More options coming soon</li>
-            <li>More options coming soon</li>
-            <li>More options coming soon</li>
-            <li>More options coming soon</li>
-          </ul>
-        </div>
+  return (
+    <div onclick={close} class="menu-container">
+      <div onclick={e => e.stopPropagation()}>
+        <ul>
+          <li>
+            <div>
+              <Switch
+                checked={options.theme}
+                onchange={e => setOptions("theme", { dark: e.target.checked })}
+                name="theme"
+                label="Night theme"
+              />
+            </div>
+          </li>
+          <li>More options coming soon</li>
+          <li>More options coming soon</li>
+          <li>More options coming soon</li>
+          <li>More options coming soon</li>
+          <li>More options coming soon</li>
+          <li>More options coming soon</li>
+        </ul>
       </div>
-    );
-  }
+    </div>
+  );
 }

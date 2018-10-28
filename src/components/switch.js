@@ -1,13 +1,9 @@
-import { h } from "wigly-jsx";
+import wigly from "wigly";
 import "./switch.css";
 
-export default class Switch {
-  render() {
-    return (
-      <div>
-        <input type="checkbox" class="ios8-switch" id={this.props.name} {...this.props} />
-        <label for={this.props.name}>{this.props.label || "no label prop"}</label>
-      </div>
-    );
-  }
-}
+export default props => (
+  <div>
+    <input type="checkbox" class="ios8-switch" id={props.name} onchange={props.onchange} checked={props.checked} />
+    <label for={props.name}>{props.label || "no label prop"}</label>
+  </div>
+);

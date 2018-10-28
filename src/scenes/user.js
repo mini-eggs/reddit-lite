@@ -1,6 +1,7 @@
-import { h } from "wigly-jsx";
+import wigly from "wigly";
+import { Component } from "wigly-class";
 
-export default class User {
+export default class User  extends Component {
   render() {
     return (
       <div class="user">

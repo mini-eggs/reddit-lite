@@ -1,5 +1,6 @@
-class Bus {
+class Bus extends Component {
   constructor() {
+    super();
     this.listeners = {};
   }
 

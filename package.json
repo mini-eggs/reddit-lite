@@ -10,11 +10,10 @@
     "navaid": "^1.0.0",
     "request": "^2.88.0",
     "snoowrap": "^1.15.2",
-    "wigly": "^0.1.21",
-    "wigly-class": "^0.1.21",
-    "wigly-ctx": "^0.1.21",
-    "wigly-customizer": "^0.1.21",
-    "wigly-jsx": "^0.1.21"
+    "wigly": "canary",
+    "wigly-class": "canary",
+    "wigly-ctx": "canary",
+    "wigly-use": "canary"
   },
   "scripts": {
     "watch": "backpack -r dotenv/config & webpack-dev-server -r dotenv/config --mode development --open --hot --inline --host 0.0.0.0",

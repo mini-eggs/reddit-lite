@@ -1,9 +1,11 @@
-import { h } from "wigly-jsx";
+import wigly from "wigly";
+import { Component } from "wigly-class";
 import reddit from "../packages/reddit";
 
-export default () => Component =>
-  class WithUser {
+export default () => Child =>
+  class WithUser extends Component {
     constructor() {
+      super();
       var loggedin = !!reddit.user;
 
       this.state = {
@@ -13,6 +15,7 @@ export default () => Component =>
     }
 
     render() {
-      return <Component {...this.props} user={this.state} />;
+      delete this.props.tag; // fix in wigly later
+      return <Child {...this.props} user={this.state} />;
     }
   };

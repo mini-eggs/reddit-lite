@@ -1,8 +1,10 @@
-import { h } from "wigly-jsx";
+import wigly from "wigly";
+import { useState } from "wigly-use";
 import getQueryParams from "./packages/get-query-params";
-import WithRouter from "./containers/with-router";
 import Header from "./components/header";
 import Home from "./scenes/home";
+import useRouter from "./containers/use-router";
+import useMount from "./containers/use-mount";
 
 var routes = [
   { href: "/", component: () => Promise.resolve({ default: Home }) },
@@ -24,37 +26,28 @@ var routes = [
   { href: "/oauth/success", component: () => import("./scenes/auth") }
 ];
 
-@WithRouter()
-class App {
-  constructor() {
-    this.state = {
-      component: undefined,
-      params: {}
-    };
-  }
+function App() {
+  var [state, set] = useState({ component: null, options: {} });
+  var [router] = useRouter();
 
-  mounted() {
+  useMount(() => {
     for (let route of routes) {
-      this.props.router.on(route.href, async params => {
-        this.setState({ component: undefined, params: {} });
+      router.on(route.href, async params => {
+        set({ component: null, options: {} });
         var file = await route.component();
-        this.setState({ component: file.default, params: { ...params, ...getQueryParams() } });
+        set({ component: file.default, options: { ...params, ...getQueryParams() } });
       });
     }
 
-    this.props.router.listen();
-  }
+    router.listen();
+  }, true);
 
-  render() {
-    var Scene = this.state.component;
-
-    return (
-      <main>
-        <Header />
-        {Scene && <Scene {...this.state.params} />}
-      </main>
-    );
-  }
+  return (
+    <main>
+      <Header />
+      {state.component && <state.component {...state.options} />}
+    </main>
+  );
 }
 
 export default App;

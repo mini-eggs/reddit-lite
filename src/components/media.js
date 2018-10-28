@@ -1,4 +1,5 @@
-import { h } from "wigly-jsx";
+import wigly from "wigly";
+import { Component } from "wigly-class";
 import Raw from "./raw";
 import "./media.css";
 
@@ -12,7 +13,7 @@ var abs = {
   background: "grey"
 };
 
-export default class Media {
+export default class Media  extends Component {
   mounted(el) {
     if (!this.props.media_embed.content) return;
 

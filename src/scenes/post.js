@@ -1,4 +1,5 @@
-import { h } from "wigly-jsx";
+import wigly from "wigly";
+import { Component } from "wigly-class";
 import reddit from "../packages/reddit";
 import "./post.css";
 import Loader from "../components/loader";
@@ -7,7 +8,7 @@ import Media from "../components/media";
 import Comments from "../components/comments";
 import withValidUser from "../containers/with-valid-user";
 
-class Link {
+class Link extends Component {
   render() {
     var { url, domain, subreddit } = this.props;
     if (domain.toLowerCase() === `self.${subreddit.toLowerCase()}`) return;
@@ -22,7 +23,7 @@ class Link {
   }
 }
 
-class PostContent {
+class PostContent extends Component {
   render() {
     var { item } = this.props;
 
@@ -59,8 +60,9 @@ class PostContent {
 }
 
 @withValidUser()
-export default class Post {
+export default class Post extends Component {
   constructor() {
+    super();
     this.state = { item: undefined };
   }
 
